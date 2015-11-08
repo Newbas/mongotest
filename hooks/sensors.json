@@ -1,0 +1,14 @@
+{
+  "eventName": "sensor-values",
+  "event": "sensor-values",
+  "url": "http://memory-antontest.rhcloud.com/imagehandle/webhook.php",
+  "requestType": "POST",
+  "headers": {
+    "accept":"application/json"
+  },
+  "query": {
+    "event": "sensor-values",
+    "token": "QDjslfj(*@78"
+  },
+  "mydevices": true
+}

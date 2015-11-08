@@ -1,0 +1,14 @@
+{
+    "eventName": "Stud",
+    "event": "Stud",
+    "url": "http://memory-antontest.rhcloud.com/imagehandle/webhook.php",
+    "requestType": "POST",
+    "headers": {
+        "accept":"application/json"
+    },
+    "query": {
+        "event": "Stud",
+        "token": "QDjslfj(*@78"
+    },
+    "mydevices": true
+}
