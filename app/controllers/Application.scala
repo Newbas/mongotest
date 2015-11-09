@@ -8,6 +8,7 @@ import play.api.mvc._
 import play.modules.reactivemongo.json.collection.JSONCollection
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.Play.current
 
 /**
  * Model for tests
@@ -39,6 +40,7 @@ class Application @Inject() (val reactiveMongoApi: ReactiveMongoApi)
     val event = Event(
       "test"
     )
+    Logger.debug("Create event" +current.configuration.getString("mongodb.uri"))
     Logger.debug("Create event")
     collection.insert(event).map{
       case res if res.ok =>
