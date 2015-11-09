@@ -28,10 +28,10 @@ class Webhook @Inject() (eventService: IEventService) extends Controller{
   def event = Action.async(parse.json) { request =>
     request.body.validate[Event].map{event =>
       //save to db event
-      eventService.create(event).map{error =>
-
+      eventService.create(event).map{
+        case Success(res) => Created(Json.toJson(Map("status" -> "ok")))
+        case _ => BadRequest(Json.toJson(Map("status" -> "error")))
       }
-      Created(Json.toJson(Map("status" -> "ok")))
     }.getOrElse(Future.successful(BadRequest(Json.toJson(Map("status" -> "error")))))
   }
 
