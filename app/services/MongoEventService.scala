@@ -3,7 +3,7 @@ package services
 import javax.inject.Inject
 
 import models.Event
-import play.api.db
+import play.api.{Logger, db}
 import play.modules.reactivemongo.ReactiveMongoApi
 import play.modules.reactivemongo.json.collection.JSONCollection
 import play.api.Play.current
@@ -30,6 +30,7 @@ class MongoEventService extends IEventService{
    * @param event event to save in mongo
    */
   def create(event: Event) = {
+    Logger.debug("MONGO_URL = " + current.configuration.getString("mongodb.uri"))
     collection.insert(event).map{
       case res if res.ok => Success(event)
       case res => Failure(res.getCause)
