@@ -20,6 +20,6 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 routesGenerator := InjectedRoutesGenerator
 
 libraryDependencies ++= Seq(
-  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.2.play24",
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.7.play24",
   "org.webjars" % "bootstrap" % "3.3.5"
 )
