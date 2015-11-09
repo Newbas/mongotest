@@ -32,8 +32,12 @@ class MongoEventService extends IEventService{
   def create(event: Event) = {
     Logger.debug("MONGO_URL = " + current.configuration.getString("mongodb.uri"))
     collection.insert(event).map{
-      case res if res.ok => Success(event)
-      case res => Failure(res.getCause)
+      case res if res.ok =>
+        Logger.debug("Succesfully saved in database")
+        Success(event)
+      case res =>
+        Logger.debug("Succesfully saved in database"+res.getCause)
+        Failure(res.getCause)
     }
   }
 }

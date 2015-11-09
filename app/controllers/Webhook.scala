@@ -4,6 +4,7 @@ import java.util.Date
 import javax.inject.Inject
 
 import models.Event
+import play.api.Logger
 import play.api.Play._
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
@@ -68,8 +69,9 @@ class Webhook @Inject() (eventService: IEventService) extends Controller{
               60,
               "Sensors"
             )
+            Logger.debug("Create event")
             eventService.create(event).map{error =>
-//              Created(Json.toJson(Map("status" -> "ok")))
+              Created(Json.toJson(Map("status" -> "ok")))
             }
             Ok("Connected and authenticated " + auth)
           }.getOrElse{
