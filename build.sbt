@@ -6,12 +6,12 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.6"
 
-libraryDependencies ++= Seq(
-  jdbc,
-  cache,
-  ws,
-  specs2 % Test
-)
+//libraryDependencies ++= Seq(
+//  jdbc,
+//  cache,
+//  ws,
+//  specs2 % Test
+//)
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
@@ -20,6 +20,5 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 routesGenerator := InjectedRoutesGenerator
 
 libraryDependencies ++= Seq(
-  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.7.play24",
-  "org.webjars" % "bootstrap" % "3.3.5"
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.7.play24"
 )
