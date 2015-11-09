@@ -1,0 +1,15 @@
+{
+  "eventName": "Stood",
+  "event": "Stood",
+  "url": "https://slack.com/api/users.setPresence",
+  "requestType": "POST",
+  "headers": {
+    "accept":"application/json"
+  },
+  "json":
+  { "ok": true,
+    "token": "xoxp-5152301056-5152301072-11873292565-bb0bc0ff9b",
+    "presence": "away"
+  },
+  "mydevices": true
+}
