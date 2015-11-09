@@ -4,11 +4,14 @@ import java.util.Date
 import javax.inject.Inject
 
 import models.Event
+import play.api.Play._
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
+import reactivemongo.api.MongoConnection
 import services.IEventService
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import scala.concurrent.Future
+import scala.util.{Failure, Success}
 
 /**
  * Controller to receive webhooks messages.
@@ -48,6 +51,23 @@ class Webhook @Inject() (eventService: IEventService) extends Controller{
       "Sensors"
     )
     Ok(Json.toJson(event))
+  }
+
+  def testMongoConnection = Action{
+    current.configuration.getString("mongodb.uri") match {
+      case Some(uri) => MongoConnection.parseURI(uri) match {
+        case Success(parsedURI) if parsedURI.db.isDefined =>
+          parsedURI.authenticate.map{auth =>
+            Ok("Connected and authenticated " + auth)
+          }
+          Ok("Connected to " + uri)
+        case Success(_) =>
+          throw configuration.globalError(s"Missing database name in mongodb.uri '$uri'")
+        case Failure(e) => throw configuration.globalError(s"Invalid mongodb.uri '$uri'", Some(e))
+      }
+
+      case _ => Ok("error")
+    }
   }
 
 }
