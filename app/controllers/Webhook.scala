@@ -29,8 +29,9 @@ class Webhook @Inject() (eventService: IEventService) extends Controller{
     request.body.validate[Event].map{event =>
       //save to db event
       eventService.create(event).map{error =>
-        Created(Json.toJson(Map("status" -> "ok")))
+
       }
+      Created(Json.toJson(Map("status" -> "ok")))
     }.getOrElse(Future.successful(BadRequest(Json.toJson(Map("status" -> "error")))))
   }
 
@@ -73,7 +74,7 @@ class Webhook @Inject() (eventService: IEventService) extends Controller{
             eventService.create(event).map{error =>
               Created(Json.toJson(Map("status" -> "ok")))
             }
-            Ok("Connected and authenticated " + auth)
+            Ok(s"Connected and authenticated ${auth.user} ${auth.password}")
           }.getOrElse{
             Ok("Connected to " + uri)
           }
