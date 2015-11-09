@@ -6,6 +6,12 @@
     "headers": {
         "accept":"application/json"
     },
+//{
+//    "event":  "{{SPARK_EVENT_NAME}}",
+//    "data": "{{SPARK_EVENT_VALUE}}",
+//    "published_at": "{{SPARK_PUBLISHED_AT}}",
+//    "coreid": "{{SPARK_CORE_ID}}"
+//}
     "query": {
         "event": "Stud",
         "token": "QDjslfj(*@78"

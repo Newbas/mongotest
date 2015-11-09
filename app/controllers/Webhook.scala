@@ -58,9 +58,24 @@ class Webhook @Inject() (eventService: IEventService) extends Controller{
       case Some(uri) => MongoConnection.parseURI(uri) match {
         case Success(parsedURI) if parsedURI.db.isDefined =>
           parsedURI.authenticate.map{auth =>
+            val event = Event(
+              "test",
+              "3587 , 3677 , 3544 , 3635, 3674, 3619, 3658" ,
+                    new Date(),
+//              dateFormatter.parse("2015-11-07T04:15:49.979Z"),
+              //      "",
+              "440027000747343232363230",
+              60,
+              "Sensors"
+            )
+            eventService.create(event).map{error =>
+//              Created(Json.toJson(Map("status" -> "ok")))
+            }
             Ok("Connected and authenticated " + auth)
+          }.getOrElse{
+            Ok("Connected to " + uri)
           }
-          Ok("Connected to " + uri)
+
         case Success(_) =>
           throw configuration.globalError(s"Missing database name in mongodb.uri '$uri'")
         case Failure(e) => throw configuration.globalError(s"Invalid mongodb.uri '$uri'", Some(e))
