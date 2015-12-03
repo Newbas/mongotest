@@ -40,7 +40,7 @@ class Application @Inject() (val reactiveMongoApi: ReactiveMongoApi)
     val event = Event(
       "test"
     )
-    Logger.debug("Create event" +current.configuration.getString("mongodb.uri"))
+    Logger.debug("Create event" +current.configuration.getString("mongodb.options.authMode"))
     Logger.debug("Create event")
     collection.insert(event).map{
       case res if res.ok =>
